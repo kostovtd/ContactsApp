@@ -13,6 +13,8 @@ public class Contact extends RealmObject{
     private String lastName;
     private String address;
 
+    public Contact() {
+    }
 
     public Contact(String firstName, String lastName, String phoneNumber, String address) {
         this.phoneNumber = phoneNumber;

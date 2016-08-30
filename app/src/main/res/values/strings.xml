@@ -1,3 +1,10 @@
 <resources>
+    <!-- GLOBAL -->
     <string name="app_name">ContactsApp</string>
+
+
+    <!-- MAIN SCREEN -->
+    <string name="main_screen_title">Contacts</string>
+    <string name="main_screen_add_new_contact_menu_title">Add New Contact</string>
+
 </resources>
