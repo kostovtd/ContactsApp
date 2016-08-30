@@ -11,8 +11,8 @@
 
         <!-- MAIN ACTIVITY -->
         <activity
-            android:name=".mainScreen.MainActivity"
-            android:label="@string/main_screen_title">
+            android:name=".contactsScreen.ContactsActivity"
+            android:label="@string/contacts_screen_title">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
