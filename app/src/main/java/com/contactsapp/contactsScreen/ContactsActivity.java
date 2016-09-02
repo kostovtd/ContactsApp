@@ -1,6 +1,7 @@
 package com.contactsapp.contactsScreen;
 
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -20,7 +21,7 @@ import butterknife.Unbinder;
 
 public class ContactsActivity extends AppCompatActivity implements ContactsContract.View{
 
-    public static final String TAG = ContactsActivity.class.getCanonicalName();
+    public static final String TAG = ContactsActivity.class.getSimpleName();
 
     private Unbinder unbinder;
     private ContactsContract.Presenter presenter;
@@ -29,6 +30,8 @@ public class ContactsActivity extends AppCompatActivity implements ContactsContr
     private TextView noContactsTv;
 
 
+    @BindView(R.id.contacts_view_pager)
+    private ViewPager contactsViewPager;
 
 
     @Override
