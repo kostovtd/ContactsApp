@@ -79,8 +79,11 @@ public class ContactsActivity extends AppCompatActivity implements ContactsContr
 
         int currentApiVersion = android.os.Build.VERSION.SDK_INT;
         if (currentApiVersion >= Build.VERSION_CODES.LOLLIPOP) {
-            if (permissionsVerifier.hasMissingPermissions(PERMISSIONS))
+            if (permissionsVerifier.hasMissingPermissions(PERMISSIONS)) {
                 requestPermissions(PERMISSIONS);
+            } else {
+                presenter.loadContacts(this);
+            }
         } else {
             presenter.loadContacts(this);
         }
@@ -150,7 +153,7 @@ public class ContactsActivity extends AppCompatActivity implements ContactsContr
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (requestCode == PERMISSION_REQUEST_CODE && hasAllPermissionsGranted(grantResults)) {
-            presenter.loadContacts(this);
+
         } else {
             if (mDeniedNever) {
                 showMissingPermissionDialog();

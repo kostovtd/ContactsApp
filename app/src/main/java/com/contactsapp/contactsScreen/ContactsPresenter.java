@@ -1,12 +1,9 @@
 package com.contactsapp.contactsScreen;
 
-
-import android.Manifest;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.support.v4.app.ActivityCompat;
+import android.net.Uri;
 import android.util.Log;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
@@ -22,6 +19,7 @@ public class ContactsPresenter implements ContactsContract.Presenter{
 
     public static final String TAG = ContactsPresenter.class.getSimpleName();
 
+    private static final String SIM_URI = "content://icc/adn";
     private final ContactsContract.View mContactsView;
 
     private List<Contact> contactList;
@@ -37,7 +35,11 @@ public class ContactsPresenter implements ContactsContract.Presenter{
     @Override
     public void loadContacts(Context context) {
         Log.d(TAG, "loadContacts hit");
-        contactList = loadContactsFromPhone(context);
+        if(contactList == null)
+            contactList = new ArrayList<>();
+
+//        contactList.addAll(loadContactsFromPhone(context));
+        contactList.addAll(loadContactsFromSIM(context));
         Log.d(TAG, "contacts size:" + contactList.size());
     }
 
@@ -52,7 +54,14 @@ public class ContactsPresenter implements ContactsContract.Presenter{
     }
 
 
+    /**
+     * Load all contacts from the phone memory
+     * @param context
+     * @return
+     */
     private List<Contact> loadContactsFromPhone(Context context) {
+        Log.d(TAG, "loadContactsFromPhone hit");
+
         List<Contact> resultList = new ArrayList<>();
 
         try {
@@ -86,6 +95,43 @@ public class ContactsPresenter implements ContactsContract.Presenter{
                 cursor.close();
             }
         } catch (NullPointerException npe) {
+            mContactsView.showErrorMessage("TEST");
+        }
+
+        return resultList;
+    }
+
+
+    /**
+     * Load all contacts from the SIM memory
+     * @param context
+     * @return
+     */
+    private List<Contact> loadContactsFromSIM(Context context) {
+        Log.d(TAG, "loadContactsFromSIM hit");
+
+        List<Contact> resultList = new ArrayList<>();
+
+        try {
+            Uri simUri = Uri.parse(SIM_URI);
+            Cursor cursor = context.getContentResolver().query(simUri, null, null, null ,null);
+
+            while (cursor.moveToNext()) {
+                String contactName = cursor.getString(cursor.getColumnIndex("name"));
+                String contactPhone = cursor.getString(cursor.getColumnIndex("number"));
+
+                contactPhone = contactPhone.replaceAll("\\D", "");
+                contactName = contactName.replaceAll("&", "");
+                contactName = contactName.replace("|", "");
+
+                Contact contact = new Contact();
+                contact.setPhoneNumber(contactPhone);
+
+                resultList.add(contact);
+            }
+            cursor.close();
+        } catch (NullPointerException npe) {
+            Log.e(TAG, npe.toString());
             mContactsView.showErrorMessage("TEST");
         }
 
