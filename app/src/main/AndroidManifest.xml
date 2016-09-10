@@ -21,6 +21,13 @@
         </activity>
 
 
+        <!-- ADD NEW CONTACT ACTIVITY-->
+        <activity
+            android:name=".addNewContactScreen.AddNewContactActivity"
+            android:label="@string/add_new_contact_title">
+        </activity>
+
+
     </application>
 
 </manifest>

@@ -1,7 +1,11 @@
 package com.contactsapp.contactsScreen;
 
 
+import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
+
+import com.contactsapp.addNewContactScreen.AddNewContactActivity;
 
 public class ContactsPresenter implements ContactsContract.Presenter{
 
@@ -23,8 +27,13 @@ public class ContactsPresenter implements ContactsContract.Presenter{
     }
 
     @Override
-    public void openAddNewContact() {
-        Log.d(TAG, "openAddNewContact hit");
+    public void openAddNewContact(Context context) {
+        if(context == null) {
+            throw new NullPointerException("context can not be NULL");
+        }
+
+        Intent addNewContactIntent = new Intent(context, AddNewContactActivity.class);
+        context.startActivity(addNewContactIntent);
     }
 
 

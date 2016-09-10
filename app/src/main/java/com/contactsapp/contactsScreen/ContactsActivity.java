@@ -85,7 +85,7 @@ public class ContactsActivity extends AppCompatActivity implements ContactsContr
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.addNewContact:
-                presenter.openAddNewContact();
+                presenter.openAddNewContact(this);
                 break;
         }
 

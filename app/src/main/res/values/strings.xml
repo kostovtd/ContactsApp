@@ -10,4 +10,7 @@
     <string name="contacts_favorites_tab_title">Favorites</string>
     <string name="contacts_all_contacts_tab_title">All Contacts</string>
 
+
+    <!-- ADD NEW CONTACT SCREEN -->
+    <string name="add_new_contact_title">New Contact</string>
 </resources>

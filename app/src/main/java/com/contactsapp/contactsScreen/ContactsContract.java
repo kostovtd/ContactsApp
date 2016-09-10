@@ -1,7 +1,7 @@
 package com.contactsapp.contactsScreen;
 
+import android.content.Context;
 
-import com.contactsapp.BasePresenter;
 import com.contactsapp.models.Contact;
 
 import java.util.List;
@@ -22,7 +22,7 @@ public interface ContactsContract {
 
         void loadContacts();
 
-        void openAddNewContact();
+        void openAddNewContact(Context context);
     }
 
 }
