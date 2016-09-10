@@ -9,20 +9,17 @@ public class Contact extends RealmObject{
     @PrimaryKey
     private String phoneNumber;
 
-    private String firstName;
-    private String lastName;
+    private String name;
     private String address;
 
     public Contact() {
     }
 
-    public Contact(String firstName, String lastName, String phoneNumber, String address) {
+    public Contact(String phoneNumber, String name, String address) {
         this.phoneNumber = phoneNumber;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.name = name;
         this.address = address;
     }
-
 
     public String getPhoneNumber() {
         return phoneNumber;
@@ -32,20 +29,12 @@ public class Contact extends RealmObject{
         this.phoneNumber = phoneNumber;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getName() {
+        return name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getAddress() {

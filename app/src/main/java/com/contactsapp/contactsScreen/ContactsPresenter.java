@@ -38,7 +38,7 @@ public class ContactsPresenter implements ContactsContract.Presenter{
         if(contactList == null)
             contactList = new ArrayList<>();
 
-//        contactList.addAll(loadContactsFromPhone(context));
+        contactList.addAll(loadContactsFromPhone(context));
         contactList.addAll(loadContactsFromSIM(context));
         Log.d(TAG, "contacts size:" + contactList.size());
     }
@@ -88,6 +88,7 @@ public class ContactsPresenter implements ContactsContract.Presenter{
 
                     Contact contact = new Contact();
                     contact.setPhoneNumber(contactPhone);
+                    contact.setName(contactName);
 
                     resultList.add(contact);
                 } while(cursor.moveToNext());
@@ -126,6 +127,7 @@ public class ContactsPresenter implements ContactsContract.Presenter{
 
                 Contact contact = new Contact();
                 contact.setPhoneNumber(contactPhone);
+                contact.setName(contactName);
 
                 resultList.add(contact);
             }
