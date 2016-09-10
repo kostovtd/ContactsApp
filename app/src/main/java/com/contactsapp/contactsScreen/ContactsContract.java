@@ -2,18 +2,15 @@ package com.contactsapp.contactsScreen;
 
 
 import com.contactsapp.BasePresenter;
-import com.contactsapp.BaseView;
 import com.contactsapp.models.Contact;
 
 import java.util.List;
 
 public interface ContactsContract {
 
-    interface View extends BaseView<Presenter> {
+    interface View {
 
         void setLoadingIndicator(boolean active);
-
-        void showNoContacts();
 
         void showContacts(List<Contact> contacts);
 
@@ -21,11 +18,9 @@ public interface ContactsContract {
     }
 
 
-    interface Presenter extends BasePresenter {
+    interface Presenter {
 
         void loadContacts();
-
-        void openContactDetails(Contact contact);
 
         void openAddNewContact();
     }

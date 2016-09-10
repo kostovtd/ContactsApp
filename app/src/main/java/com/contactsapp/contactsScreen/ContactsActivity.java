@@ -1,20 +1,16 @@
 package com.contactsapp.contactsScreen;
 
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.TextView;
-
 import com.contactsapp.R;
 import com.contactsapp.models.Contact;
-
 import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -25,13 +21,13 @@ public class ContactsActivity extends AppCompatActivity implements ContactsContr
 
     private Unbinder unbinder;
     private ContactsContract.Presenter presenter;
-
-    @BindView(R.id.noContactsTv)
-    private TextView noContactsTv;
-
+    private ContactsPagerAdapter contactsPagerAdapter;
 
     @BindView(R.id.contacts_view_pager)
-    private ViewPager contactsViewPager;
+    ViewPager contactsViewPager;
+
+    @BindView(R.id.contacts_tab_layout)
+    TabLayout contactsTabLayout;
 
 
     @Override
@@ -41,6 +37,12 @@ public class ContactsActivity extends AppCompatActivity implements ContactsContr
         setContentView(R.layout.activity_contacts);
 
         unbinder = ButterKnife.bind(this);
+
+        presenter = new ContactsPresenter(this);
+
+        contactsPagerAdapter = new ContactsPagerAdapter(getSupportFragmentManager(), this);
+        contactsViewPager.setAdapter(contactsPagerAdapter);
+        contactsTabLayout.setupWithViewPager(contactsViewPager);
     }
 
 
@@ -49,7 +51,6 @@ public class ContactsActivity extends AppCompatActivity implements ContactsContr
     protected void onResume() {
         Log.d(TAG, "onResume hit");
         super.onResume();
-        presenter.start();
     }
 
 
@@ -59,7 +60,6 @@ public class ContactsActivity extends AppCompatActivity implements ContactsContr
     protected void onPause() {
         Log.d(TAG, "onPause hit");
         super.onPause();
-        presenter.start();
     }
 
 
@@ -67,8 +67,8 @@ public class ContactsActivity extends AppCompatActivity implements ContactsContr
     @Override
     protected void onDestroy() {
         Log.d(TAG, "onDestroy hit");
-        unbinder.unbind();
         super.onDestroy();
+        unbinder.unbind();
     }
 
 
@@ -99,12 +99,6 @@ public class ContactsActivity extends AppCompatActivity implements ContactsContr
 
 
     @Override
-    public void showNoContacts() {
-        noContactsTv.setVisibility(View.VISIBLE);
-    }
-
-
-    @Override
     public void showContacts(List<Contact> contacts) {
 
     }
@@ -113,12 +107,5 @@ public class ContactsActivity extends AppCompatActivity implements ContactsContr
     @Override
     public boolean isActive() {
         return false;
-    }
-
-
-    @Override
-    public void setPresenter(ContactsContract.Presenter presenter) {
-        if(presenter != null)
-            this.presenter = presenter;
     }
 }

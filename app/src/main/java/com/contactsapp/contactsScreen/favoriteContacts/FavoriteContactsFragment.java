@@ -1,4 +1,4 @@
-package com.contactsapp.contactsScreen;
+package com.contactsapp.contactsScreen.favoriteContacts;
 
 
 import android.os.Bundle;

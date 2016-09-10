@@ -7,5 +7,7 @@
     <string name="contacts_screen_title">Contacts</string>
     <string name="contacts_screen_add_new_contact_menu_title">Add New Contact</string>
     <string name="contacts_screen_no_contacts">No contacts</string>
+    <string name="contacts_favorites_tab_title">Favorites</string>
+    <string name="contacts_all_contacts_tab_title">All Contacts</string>
 
 </resources>

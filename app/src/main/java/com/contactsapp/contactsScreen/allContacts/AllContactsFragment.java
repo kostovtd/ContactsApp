@@ -1,4 +1,4 @@
-package com.contactsapp.contactsScreen;
+package com.contactsapp.contactsScreen.allContacts;
 
 
 import android.os.Bundle;
