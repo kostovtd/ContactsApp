@@ -3,6 +3,13 @@
     <string name="app_name">ContactsApp</string>
 
 
+    <!-- application permissions related strings -->
+    <string name="application_settings">Application Settings</string>
+    <string name="application_help">Help</string>
+    <string name="application_help_text"> Required permission is missing.\n\nTo grant this permission click on Settings, then Permissions and turn the permission on.\n\nThen click back twice to return to the app</string>
+    <string name="application_quit">Exit App</string>
+
+
     <!-- CONTACTS SCREEN -->
     <string name="contacts_screen_title">Contacts</string>
     <string name="contacts_screen_add_new_contact_menu_title">Add New Contact</string>

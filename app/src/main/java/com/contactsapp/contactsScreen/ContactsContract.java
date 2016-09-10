@@ -14,13 +14,15 @@ public interface ContactsContract {
 
         void showContacts(List<Contact> contacts);
 
+        void showErrorMessage(String message);
+
         boolean isActive();
     }
 
 
     interface Presenter {
 
-        void loadContacts();
+        void loadContacts(Context context);
 
         void openAddNewContact(Context context);
     }
